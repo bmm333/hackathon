@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Short-Video Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <!-- Feed container with three different aspect ratio clips -->
+    <main class="feed" data-scroll-container>
+        <!-- Clip 1: Vertical (9:16) - TikTok-style dance clip -->
+        <section class="clip" data-clip-id="v001" data-video-type="vertical" data-intersection-threshold="0.5">
+            <div class="clip__video-container">
+                <video class="clip__video"
+                       preload="metadata"
+                       playsinline
+                       loop
+                       muted
+                       data-src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                       poster="https://assets.mixkit.co/videos/preview/mixkit-young-woman-dancing-happily-6858-large.jpg">
+                </video>
+
+                <!-- AI content badge -->
+                <div class="clip__badge clip__badge--ai">✨ Dance Trending</div>
+
+                <!-- Engagement metrics overlay -->
+                <div class="clip__metrics">
+                    <div class="clip__metric clip__metric--fps">60 FPS</div>
+                    <div class="clip__metric clip__metric--engagement">92% Watch Rate</div>
+                    <div class="clip__metric clip__metric--retention">+18s Avg. Retention</div>
+                </div>
+            </div>
+
+            <!-- Basic controls layer -->
+            <div class="clip__controls">
+                <div class="clip__info">
+                    <h3 class="clip__title">@dance_star</h3>
+                    <p class="clip__caption">Trying out the new dance challenge! #dancechallenge #viral</p>
+                </div>
+
+                <div class="clip__actions">
+                    <!-- Action buttons (like existing structure) -->
+                    <button class="clip__action clip__action--like">
+                        <span class="clip__action-icon">❤️</span>
+                        <span class="clip__action-count">24.6k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--comment">
+                        <span class="clip__action-icon">💬</span>
+                        <span class="clip__action-count">3.1k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--remix" data-remix-count="412">
+                        <span class="clip__action-icon">🔄</span>
+                        <span class="clip__action-count">412</span>
+                    </button>
+
+                    <button class="clip__action clip__action--share" data-share-modal="#share-clip">
+                        <span class="clip__action-icon">↗️</span>
+                        <span class="clip__action-count">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clip 2: Square (1:1) - Portrait close-up -->
+        <section class="clip" data-clip-id="s001" data-video-type="square" data-intersection-threshold="0.5">
+            <div class="clip__video-container">
+                <video class="clip__video"
+                       preload="metadata"
+                       playsinline
+                       loop
+                       muted
+                       data-src="https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.mp4"
+                       poster="https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/rabbit320.jpg">
+                </video>
+
+                <!-- AI content badge -->
+                <div class="clip__badge clip__badge--ai">✨ Featured Portrait</div>
+
+                <!-- Engagement metrics overlay -->
+                <div class="clip__metrics">
+                    <div class="clip__metric clip__metric--fps">60 FPS</div>
+                    <div class="clip__metric clip__metric--engagement">88% Watch Rate</div>
+                    <div class="clip__metric clip__metric--retention">+12s Avg. Retention</div>
+                </div>
+            </div>
+
+            <!-- Basic controls layer -->
+            <div class="clip__controls">
+                <div class="clip__info">
+                    <h3 class="clip__title">@portrait_pro</h3>
+                    <p class="clip__caption">Experimenting with new makeup techniques #beauty #portrait #aesthetic</p>
+                </div>
+
+                <div class="clip__actions">
+                    <!-- Action buttons -->
+                    <button class="clip__action clip__action--like">
+                        <span class="clip__action-icon">❤️</span>
+                        <span class="clip__action-count">18.9k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--comment">
+                        <span class="clip__action-icon">💬</span>
+                        <span class="clip__action-count">2.7k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--remix" data-remix-count="186">
+                        <span class="clip__action-icon">🔄</span>
+                        <span class="clip__action-count">186</span>
+                    </button>
+
+                    <button class="clip__action clip__action--share" data-share-modal="#share-clip">
+                        <span class="clip__action-icon">↗️</span>
+                        <span class="clip__action-count">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clip 3: Landscape (16:9) - Action scene -->
+        <section class="clip" data-clip-id="l001" data-video-type="landscape" data-intersection-threshold="0.5">
+            <div class="clip__video-container">
+                <video class="clip__video"
+                       preload="metadata"
+                       playsinline
+                       loop
+                       muted
+                       data-src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                       poster="https://mdn.github.io/learning-area/html/multimedia-and-embedding/video-and-audio-content/flowers.jpg">
+                </video>
+
+                <!-- AI content badge -->
+                <div class="clip__badge clip__badge--ai">✨ Action Highlights</div>
+
+                <!-- Engagement metrics overlay -->
+                <div class="clip__metrics">
+                    <div class="clip__metric clip__metric--fps">60 FPS</div>
+                    <div class="clip__metric clip__metric--engagement">95% Watch Rate</div>
+                    <div class="clip__metric clip__metric--retention">+22s Avg. Retention</div>
+                </div>
+            </div>
+
+            <!-- Basic controls layer -->
+            <div class="clip__controls">
+                <div class="clip__info">
+                    <h3 class="clip__title">@parkour_master</h3>
+                    <p class="clip__caption">Sunday training session. Pushing limits! #parkour #freerunning #extreme</p>
+                </div>
+
+                <div class="clip__actions">
+                    <!-- Action buttons -->
+                    <button class="clip__action clip__action--like">
+                        <span class="clip__action-icon">❤️</span>
+                        <span class="clip__action-count">32.1k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--comment">
+                        <span class="clip__action-icon">💬</span>
+                        <span class="clip__action-count">4.8k</span>
+                    </button>
+
+                    <button class="clip__action clip__action--remix" data-remix-count="324">
+                        <span class="clip__action-icon">🔄</span>
+                        <span class="clip__action-count">324</span>
+                    </button>
+
+                    <button class="clip__action clip__action--share" data-share-modal="#share-clip">
+                        <span class="clip__action-icon">↗️</span>
+                        <span class="clip__action-count">Share</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Navigation bar -->
+    <nav class="nav">
+        <button class="nav__button nav__button--home nav__button--active">Home</button>
+        <button class="nav__button nav__button--discover">Discover</button>
+        <button class="nav__button nav__button--create">+</button>
+        <button class="nav__button nav__button--inbox">Inbox</button>
+        <button class="nav__button nav__button--profile">Profile</button>
+    </nav>
+
+    <!-- Share modal with deep link generator -->
+    <div id="share-clip" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Share this clip</h2>
+                <button class="modal__close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="share__preview">
+                    <img class="share__thumbnail" src="" alt="Video thumbnail">
+                    <p class="share__caption"></p>
+                </div>
+
+                <div class="share__options">
+                    <button class="share__option share__option--copy">
+                        <span class="share__option-icon">📋</span>
+                        <span class="share__option-text">Copy Link</span>
+                    </button>
+                    <button class="share__option share__option--whatsapp">
+                        <span class="share__option-icon">📱</span>
+                        <span class="share__option-text">WhatsApp</span>
+                    </button>
+                    <button class="share__option share__option--twitter">
+                        <span class="share__option-icon">🐦</span>
+                        <span class="share__option-text">Twitter</span>
+                    </button>
+                    <button class="share__option share__option--facebook">
+                        <span class="share__option-icon">👥</span>
+                        <span class="share__option-text">Facebook</span>
+                    </button>
+                    <button class="share__option share__option--embed">
+                        <span class="share__option-icon">🔗</span>
+                        <span class="share__option-text">Embed</span>
+                    </button>
+                </div>
+
+                <div class="share__deeplink">
+                    <input type="text" class="share__link-input" readonly value="https://app.com/v/12345">
+                    <button class="share__link-copy">Copy</button>
+                </div>
+
+                <div class="share__qr">
+                    <div class="share__qr-code" data-link="https://app.com/v/12345"></div>
+                    <p class="share__qr-text">Scan to watch on mobile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo mode controls -->
+    <div class="demo-controls">
+        <button class="demo-controls__toggle">Demo Mode</button>
+        <div class="demo-controls__panel">
+            <label class="demo-controls__option">
+                <input type="checkbox" class="demo-controls__checkbox" data-feature="autoplay">
+                <span class="demo-controls__label">Auto-play Sequence</span>
+            </label>
+            <label class="demo-controls__option">
+                <input type="checkbox" class="demo-controls__checkbox" data-feature="metrics">
+                <span class="demo-controls__label">Show Metrics Overlay</span>
+            </label>
+            <label class="demo-controls__option">
+                <input type="checkbox" class="demo-controls__checkbox" data-feature="debug">
+                <span class="demo-controls__label">Debug Mode</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="RemixSession.js"></script>
+<script src="WebGLFilterPipeline.js"></script>
+<script src="CollaborativeStitcher.js"></script>
+<script src="script.js" defer></script>
+</body>
+</html>
