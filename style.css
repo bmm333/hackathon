@@ -142,7 +142,99 @@ body {
     transition: transform var(--animation-duration) var(--transition-timing);
     contain: strict;
 }
+/* Add to your style.css */
+/* ======================= */
+/* Premium Play Overlay */
+/* ======================= */
+.clip__play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: opacity 0.4s var(--transition-smooth);
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
 
+.clip.playing .clip__play-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.play-button__container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.play-button__outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.play-button__inner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(255, 51, 102, 0.3);
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+.play-button__inner::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid white;
+    margin-left: 4px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile Optimization */
+@media (max-width: 767px) {
+    .play-button__container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .play-button__inner {
+        width: 44px;
+        height: 44px;
+        top: 8px;
+        left: 8px;
+    }
+
+    .play-button__inner::after {
+        border-top-width: 12px;
+        border-bottom-width: 12px;
+        border-left-width: 16px;
+    }
+}
 /* Basic Controls with Parallax */
 .controls__basic {
     display: flex;
@@ -494,7 +586,33 @@ body {
 .clip.loaded .clip__actions {
     opacity: 1 !important;
 }
+/* iOS Specific Fixes */
+.ios .clip {
+    cursor: pointer;
+}
 
+.ios .clip::after {
+    content: "Tap to Play";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.ios .clip.playing::after {
+    opacity: 0;
+}
+
+.ios .clip__video {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
 /* AI Badge */
 .clip__badge {
     position: absolute;
@@ -637,9 +755,9 @@ body {
 @media (max-width: 767px) {
     .clip__actions {
         opacity: 1; /* Always visible on mobile */
-        background: var(--overlay-dark);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
         border-radius: var(--app-radius);
         padding: 8px;
     }

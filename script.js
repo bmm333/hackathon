@@ -1,3 +1,50 @@
+// =================
+// iOS FIXES START
+// =================
+
+// Add this before any other code
+document.addEventListener('DOMContentLoaded', () => {
+    // Detect iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if(isIOS) {
+        // Add iOS-specific body class
+        document.body.classList.add('ios');
+
+        // Force-enable controls visibility
+        const style = document.createElement('style');
+        style.textContent = `
+            .clip .clip__actions {
+                opacity: 1 !important;
+            }
+            .clip__video {
+                -webkit-transform: translateZ(0);
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});
+
+// iOS Video Click Handler
+function handleIOSVideoClick(e) {
+    const video = e.currentTarget.querySelector('.clip__video');
+    if(video.paused) {
+        video.play()
+            .then(() => {
+                e.currentTarget.classList.remove('needs-tap');
+            })
+            .catch(err => {
+                console.error('iOS playback failed:', err);
+            });
+    }
+}
+
+// =================
+// iOS FIXES END
+// =================
+
+
+
 /**
  * 🏆 COMPETITION-DOMINATING SHORT VIDEO PLATFORM 🏆
  * Advanced implementation with AI integration, viral mechanics,
@@ -87,6 +134,8 @@ function initializeVideoPlayers() {
     const videoClips = document.querySelectorAll('.clip__video');
 
     videoClips.forEach(video => {
+        video.setAttribute('playsinline', 'true');
+        video.setAttribute('webkit-playsinline', 'true');
         // Set the actual src attribute from data-src
         if (video.dataset.src) {
             // Direct src assignment instead of lazy loading
@@ -101,7 +150,7 @@ function initializeVideoPlayers() {
             // Log when video is successfully loaded
             video.onloadeddata = function() {
                 console.log('Video loaded successfully:', video.src);
-                video.closest('.clip').classList.add('loaded'); // Changed from parentElement
+                video.closest('.clip').classList.add('loaded');
             };
         }
 
@@ -134,18 +183,17 @@ function setupIntersectionObserver() {
             const clip = entry.target;
             const video = clip.querySelector('.clip__video');
 
-            if (!video) return;
-
-            if (entry.isIntersecting) {
-                // Play video when in view and make sure to handle errors
-                video.play().catch(err => {
-                    console.warn('Autoplay prevented:', err);
-                    // Add play button or other UI to indicate manual play is needed
-                });
-                console.log('Video in view, attempting autoplay');
+            if(entry.isIntersecting) {
+                // Add this iOS check
+                if(!document.body.classList.contains('ios')) {
+                    video.play().catch(err => {
+                        console.warn('Autoplay prevented:', err);
+                    });
+                }
+                clip.classList.add('playing');
             } else {
-                // Pause when out of view
                 video.pause();
+                clip.classList.remove('playing');
             }
         });
     }, options);
@@ -1488,6 +1536,22 @@ function playPing() {
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
     oscillator.stop(audioContext.currentTime + 0.5);
 }
+// Add to script.js
+function setupPremiumPlayButtons() {
+    document.querySelectorAll('.clip__play-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            const clip = e.currentTarget.closest('.clip');
+            const video = clip.querySelector('.clip__video');
+
+            if(video.paused) {
+                video.play()
+                    .then(() => clip.classList.add('playing'))
+                    .catch(err => console.error('Play failed:', err));
+            }
+        });
+    });
+}
+
 
 function showRadialIndicator(clip) {
     // iOS-style radial progress indicator
@@ -1501,7 +1565,10 @@ function showRadialIndicator(clip) {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize video memory pool
     const videoPool = new VideoMemoryPool();
-
+    // Initialize in DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+        setupPremiumPlayButtons();
+    });
     // Register all video elements
     document.querySelectorAll('.clip__video').forEach(video => {
         videoPool.registerVideo(video);
@@ -1557,4 +1624,9 @@ document.addEventListener('DOMContentLoaded', () => {
         input.select();
         document.execCommand('copy');
     });
+    if(document.body.classList.contains('ios')) {
+        document.querySelectorAll('.clip').forEach(clip => {
+            clip.addEventListener('click', handleIOSVideoClick);
+        });
+    }
 });
